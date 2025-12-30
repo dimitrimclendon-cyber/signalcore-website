@@ -1137,6 +1137,56 @@
       .cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; }
       .cta .hero-cta { background: var(--white); color: var(--primary-dark); }
 
+      /* Sample Brief Form */
+      .sample-brief-form {
+        max-width: 600px;
+        margin: 0 auto 1rem;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .form-group {
+        flex: 1;
+      }
+
+      .sample-brief-form input {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 8px;
+        background: rgba(255,255,255,0.15);
+        color: #fff;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+
+      .sample-brief-form input::placeholder {
+        color: rgba(255,255,255,0.7);
+      }
+
+      .sample-brief-form input:focus {
+        outline: none;
+        border-color: #fff;
+        background: rgba(255,255,255,0.25);
+      }
+
+      .sample-brief-form .form-submit {
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      .sample-brief-form .form-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      }
+
       /* Footer */
       footer {
         background: var(--dark);
@@ -1299,6 +1349,10 @@
         .cta { padding: 2.5rem 1rem; }
         .cta h2 { font-size: 1.5rem; }
         .cta p { font-size: 0.95rem; }
+        
+        /* Form - Stack on Mobile */
+        .form-row { flex-direction: column; gap: 0.75rem; }
+        .sample-brief-form input { padding: 0.8rem; font-size: 0.95rem; }
         
         /* Footer */
         footer { padding: 1.5rem 1rem; font-size: 0.8rem; }
@@ -1674,11 +1728,32 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta">
+    <section class="cta" id="sample-brief">
       <h2>See the Intelligence Before You Buy</h2>
       <p>Request a sample brief: full property intel with decision-maker contact redacted. Verified HVAC contractors only.</p>
-      <a href="mailto:leads@signalcoredata.com?subject=Sample Brief Request&body=Company Name:%0D%0APhone:%0D%0AService Area:%0D%0A" class="hero-cta">Request Sample Brief →</a>
-      <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">Include your company name, phone, and service area. We verify all requests within 24 hours.</p>
+      
+      <form name="sample-brief" method="POST" data-netlify="true" class="sample-brief-form">
+        <input type="hidden" name="form-name" value="sample-brief">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" name="company" placeholder="Company Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email Address" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="service_area" placeholder="Service Area (e.g., Spokane, WA)">
+          </div>
+        </div>
+        <button type="submit" class="hero-cta form-submit">Request Sample Brief →</button>
+      </form>
+      
+      <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">We verify all requests within 24 hours.</p>
     </section>
 
     <!-- Footer -->
