@@ -1226,8 +1226,9 @@
         .poc-score-number { font-size: 2.5rem; }
         .poc-content h3 { font-size: 1.25rem; }
         
-        /* Comparison Table - Horizontal Scroll Carousel */
-        .comparison { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        /* Comparison Table - Horizontal Scroll Carousel (hide scrollbar) */
+        .comparison { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+        .comparison::-webkit-scrollbar { display: none; }
         .comparison-table { 
           font-size: 0.75rem; 
           display: table;
@@ -1667,7 +1668,7 @@
         </div>
 
         <div class="pricing-note">
-          <p><strong>The "Success" Logic:</strong> I don't charge you a huge fee upfront. I win only when you win. This makes me your partner, not just a vendor.</p>
+          <p><strong>The "Success" Logic:</strong> We don't charge you a huge fee upfront. We win only when you win. This makes us your partner, not just a vendor.</p>
         </div>
       </div>
     </section>
