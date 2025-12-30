@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignalCore Data | Predictive Commercial HVAC Intelligence</title>
+    <meta name="description" content="Predictive commercial HVAC intelligence for the Inland Northwest. We aggregate 30+ data sources—sales, permits, violations, building age—to identify opportunities 6-12 months before the RFP." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --accent: #10b981;
+        --accent-bright: #2dd4bf;
+        --gold: #f59e0b;
+        --danger: #ef4444;
+        --dark: #0f172a;
+        --gray-900: #1e293b;
+        --gray-700: #334155;
+        --gray-500: #64748b;
+        --gray-300: #cbd5e1;
+        --white: #ffffff;
+        --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, sans-serif;
+        background: var(--dark);
+        color: var(--white);
+        line-height: 1.7;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+      /* Top Banner */
+      .top-banner {
+        background: var(--accent-bright);
+        color: var(--dark);
+        padding: 0.75rem;
+        text-align: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Navigation */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding: 1rem 2rem;
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo { font-size: 1.4rem; font-weight: 800; color: var(--white); text-decoration: none; }
+      .logo span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+      .nav-links { display: flex; gap: 2rem; list-style: none; }
+      .nav-links a { color: var(--gray-300); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+      .nav-links a:hover { color: var(--white); }
+
+      .nav-cta {
+        background: var(--accent);
+        color: var(--white);
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 6rem 2rem;
+        background: linear-gradient(180deg, var(--dark) 0%, #1e1b4b 100%);
+        text-align: center;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.2) 0%, transparent 60%);
+        pointer-events: none;
+      }
+
+      .hero-content { position: relative; z-index: 1; }
+
+      .hero h1 {
+        font-size: 3.2rem;
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--gray-300);
+        max-width: 650px;
+        margin: 0 auto 2.5rem;
+      }
+
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--accent);
+        color: var(--white);
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+      }
+
+      .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(16,185,129,0.3); }
+
+      .hero-sub { margin-top: 1rem; font-size: 0.9rem; color: var(--gray-500); }
+
+      /* Section Styles */
+      section { padding: 5rem 2rem; }
+
+      .section-header { text-align: center; margin-bottom: 3rem; }
+      .section-header h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.75rem; }
+      .section-header p { font-size: 1.1rem; color: var(--gray-400); max-width: 600px; margin: 0 auto; }
+
+      /* Window of Opportunity */
+      .window { background: var(--dark); }
+
+      .window-diagram {
+        background: rgba(30,41,59,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .window-label {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .window-label span {
+        display: inline-block;
+        background: rgba(16,185,129,0.15);
+        border: 2px solid var(--accent);
+        color: var(--accent);
+        padding: 0.5rem 1.5rem;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .steps-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        position: relative;
+      }
+
+      .steps-container::before {
+        content: "";
+        position: absolute;
+        top: 24px;
+        left: 12.5%;
+        right: 12.5%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 70%, var(--danger) 70%);
+        border-radius: 2px;
+        z-index: 0;
+      }
+
+      .step-item {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .step-number {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-weight: 800;
+        font-size: 1.1rem;
+      }
+
+      .step-item.good .step-number {
+        background: var(--accent);
+        color: var(--dark);
+        box-shadow: 0 0 25px rgba(16,185,129,0.4);
+      }
+
+      .step-item.bad .step-number {
+        background: var(--danger);
+        color: var(--white);
+        box-shadow: 0 0 25px rgba(239,68,68,0.4);
+      }
+
+      .step-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+      }
+
+      .step-item.good .step-title { color: var(--accent); }
+      .step-item.bad .step-title { color: var(--danger); }
+
+      .step-desc {
+        font-size: 0.8rem;
+        color: var(--gray-400);
+        padding: 0 0.5rem;
+      }
+
+      .window-quote {
+        background: rgba(99,102,241,0.1);
+        border-left: 4px solid var(--primary);
+        padding: 1.5rem;
+        border-radius: 0 8px 8px 0;
+        font-size: 1.05rem;
+        color: var(--gray-200);
+        font-style: italic;
+      }
+
+      /* The Three Engines */
+      .engines { background: linear-gradient(180deg, var(--dark) 0%, #1e1b4b 100%); }
+
+      .engines-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .engine-card {
+        background: rgba(30,41,59,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s;
+      }
+
+      .engine-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+
+      .engine-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--gradient);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .engine-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+      .engine-card p { font-size: 0.9rem; color: var(--gray-400); line-height: 1.6; }
+
+      /* Intelligence Pipeline */
+      .pipeline { background: var(--dark); }
+
+      .pipeline-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .pipeline-arrow {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        color: var(--primary);
+        font-weight: 300;
+      }
+
+      .pipeline-stage {
+        background: rgba(30,41,59,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 1.25rem;
+        flex: 1;
+        min-width: 160px;
+        max-width: 200px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .pipeline-stage:hover {
+        border-color: var(--primary);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+      }
+
+      .pipeline-stage.highlight {
+        background: var(--gradient);
+        border: none;
+      }
+
+      .stage-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .stage-number {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .pipeline-stage.highlight .stage-number {
+        color: rgba(255,255,255,0.8);
+      }
+
+      .stage-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .stage-desc {
+        font-size: 0.75rem;
+        color: var(--gray-400);
+        line-height: 1.4;
+      }
+
+      .pipeline-stage.highlight .stage-desc {
+        color: rgba(255,255,255,0.8);
+      }
+
+      .stage-sources {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        justify-content: center;
+        margin-top: 0.75rem;
+      }
+
+      .stage-sources span {
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.6rem;
+        font-weight: 500;
+        color: var(--primary);
+      }
+
+      .pipeline-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        background: rgba(30,41,59,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .pipeline-stat-number {
+        font-size: 2rem;
+        font-weight: 900;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .pipeline-stat-label {
+        font-size: 0.75rem;
+        color: var(--gray-400);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-top: 0.25rem;
+      }
+
+      /* Data Terminal */
+      .data-terminal {
+        background: #0a0a0f;
+        border: 1px solid #1e293b;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+      }
+
+      .terminal-header {
+        background: #1a1a24;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 1px solid #1e293b;
+      }
+
+      .terminal-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .terminal-dot.red { background: #ef4444; }
+      .terminal-dot.yellow { background: #f59e0b; }
+      .terminal-dot.green { background: #10b981; }
+
+      .terminal-title {
+        flex: 1;
+        text-align: center;
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+
+      .terminal-status {
+        font-size: 0.7rem;
+        color: #10b981;
+        animation: blink 2s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+
+      .terminal-body {
+        padding: 1.5rem;
+      }
+
+      .data-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .data-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .data-label {
+        font-size: 0.65rem;
+        color: #6366f1;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #1e293b;
+      }
+
+      .data-sources-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .source-item {
+        background: #131320;
+        border: 1px solid #1e293b;
+        padding: 0.35rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        color: #cbd5e1;
+      }
+
+      .source-item.active {
+        background: rgba(99, 102, 241, 0.2);
+        border-color: #6366f1;
+        color: #a5b4fc;
+      }
+
+      .process-flow {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .process-step {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: #131320;
+        border: 1px solid #1e293b;
+        padding: 0.4rem 0.6rem;
+        border-radius: 4px;
+      }
+
+      .step-status.done {
+        color: #10b981;
+        font-weight: 700;
+      }
+
+      .step-name {
+        font-size: 0.7rem;
+        color: #fcd34d;
+      }
+
+      .process-arrow {
+        color: #4b5563;
+        font-size: 0.9rem;
+      }
+
+      .output-metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+
+      .metric {
+        background: #131320;
+        border: 1px solid #1e293b;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .metric.highlight {
+        border-color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+      }
+
+      .metric-value {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        margin-bottom: 0.25rem;
+      }
+
+      .metric.highlight .metric-value {
+        color: #10b981;
+      }
+
+      .metric-name {
+        font-size: 0.65rem;
+        color: #64748b;
+      }
+
+      /* Funnel Visualization */
+      .funnel-container {
+        padding: 0;
+      }
+
+      /* Simple Funnel */
+      .simple-funnel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .funnel-stage {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+      }
+
+      .funnel-stage.stage-1 .stage-bar {
+        width: 100%;
+        height: 40px;
+        background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+        border-radius: 6px;
+      }
+
+      .funnel-stage.stage-2 .stage-bar {
+        width: 65%;
+        height: 40px;
+        background: linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%);
+        border-radius: 6px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .funnel-stage.stage-3 .stage-bar {
+        width: 35%;
+        height: 40px;
+        background: linear-gradient(90deg, #a855f7 0%, #10b981 100%);
+        border-radius: 6px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stage-content {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .funnel-stage {
+        position: relative;
+        height: 40px;
+      }
+
+      .stage-num {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #fff;
+      }
+
+      .stage-text {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.9);
+        font-weight: 500;
+      }
+
+      .funnel-connector {
+        color: #64748b;
+        font-size: 1rem;
+        padding: 0.25rem 0;
+      }
+
+      .funnel-connector.final-arrow {
+        color: #10b981;
+        font-size: 1.2rem;
+      }
+
+      .funnel-final {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: 2px solid #34d399;
+        border-radius: 12px;
+        padding: 1.25rem 2.5rem;
+        box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+        margin-top: 0.5rem;
+      }
+
+      .final-badge {
+        background: #fff;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      }
+
+      .final-number {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #059669;
+      }
+
+      .final-text {
+        color: #fff;
+      }
+
+      .final-text strong {
+        display: block;
+        font-size: 1.3rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .final-text span {
+        font-size: 0.85rem;
+        opacity: 0.9;
+      }
+
+      .funnel-message {
+        text-align: center;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #1e293b;
+      }
+
+      .funnel-message p {
+        font-size: 1.25rem;
+        color: #e2e8f0;
+        margin: 0;
+      }
+
+      .funnel-message strong {
+        color: #10b981;
+      }
+
+      /* Original funnel styles (keeping for compatibility) */
+      .funnel-row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .funnel-bar {
+        background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+        border: 1px solid #475569;
+        border-radius: 4px;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+      }
+
+      .funnel-count {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #e2e8f0;
+      }
+
+      .funnel-label {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .funnel-arrow {
+        text-align: center;
+        font-size: 0.7rem;
+        color: #6366f1;
+        padding: 0.4rem 0;
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+      }
+
+      .funnel-row.final {
+        margin-top: 1rem;
+      }
+
+      .funnel-output {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: 2px solid #34d399;
+        border-radius: 8px;
+        padding: 1.25rem 2rem;
+        text-align: center;
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+      }
+
+      .output-number {
+        display: block;
+        font-size: 3rem;
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1;
+      }
+
+      .output-label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-top: 0.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .output-sub {
+        display: block;
+        font-size: 0.7rem;
+        color: rgba(255,255,255,0.8);
+        margin-top: 0.5rem;
+      }
+
+      .funnel-summary {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #1e293b;
+      }
+
+      .summary-stat {
+        text-align: center;
+      }
+
+      .stat-big {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #f87171;
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+      }
+
+      .summary-stat:last-child .stat-big {
+        color: #10b981;
+      }
+
+      .stat-small {
+        font-size: 0.7rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* POC Score */
+      .poc { background: var(--dark); }
+
+      .poc-card {
+        background: rgba(30,41,59,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        padding: 2.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .poc-visual {
+        text-align: center;
+      }
+
+      .poc-score-display {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: conic-gradient(var(--accent) 0% 92%, rgba(255,255,255,0.1) 92% 100%);
+        position: relative;
+      }
+
+      .poc-score-display::before {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background: var(--dark);
+        border-radius: 50%;
+      }
+
+      .poc-score-number {
+        position: relative;
+        z-index: 1;
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--accent);
+      }
+
+      .poc-score-label {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: var(--gray-400);
+      }
+
+      .poc-content h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+      .poc-content p { font-size: 1rem; color: var(--gray-300); margin-bottom: 1rem; }
+
+      .poc-factors {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .poc-factors li {
+        background: rgba(99,102,241,0.15);
+        border: 1px solid rgba(99,102,241,0.3);
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      /* Margin Comparison */
+      .comparison { background: linear-gradient(180deg, #1e1b4b 0%, var(--dark) 100%); }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(30,41,59,0.5);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 1.25rem 1.5rem;
+        text-align: left;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .comparison-table th {
+        background: rgba(255,255,255,0.05);
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .comparison-table th:first-child { width: 30%; }
+
+      .comparison-table .bad { color: #f87171; }
+      .comparison-table .good { color: #34d399; font-weight: 600; }
+
+      .comparison-table tr:last-child td { border-bottom: none; }
+
+      .comparison-table .highlight {
+        background: rgba(16,185,129,0.1);
+        font-size: 1.1rem;
+      }
+
+      /* Pricing */
+      .pricing { background: var(--dark); }
+
+      .pricing-banner {
+        background: var(--accent-bright);
+        color: var(--dark);
+        padding: 0.75rem;
+        text-align: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .pricing-card {
+        background: rgba(30,41,59,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s;
+      }
+
+      .pricing-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+
+      .pricing-card.featured {
+        background: var(--gradient-gold);
+        border: none;
+        transform: scale(1.03);
+      }
+
+      .pricing-card.featured:hover { transform: scale(1.03) translateY(-5px); }
+
+      .pricing-badge {
+        background: rgba(255,255,255,0.2);
+        padding: 0.2rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+      }
+
+      .pricing-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+      .pricing-price { font-size: 2.5rem; font-weight: 900; margin-bottom: 0.25rem; }
+      .pricing-price span { font-size: 1rem; font-weight: 400; opacity: 0.7; }
+
+      .pricing-desc { opacity: 0.8; font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+      .pricing-features { list-style: none; text-align: left; margin-bottom: 1.5rem; }
+
+      .pricing-features li {
+        padding: 0.5rem 0;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .pricing-features li:last-child { border-bottom: none; }
+      .pricing-features li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+      .pricing-card.featured .pricing-features li::before { color: var(--dark); }
+
+      .btn-buy {
+        display: block;
+        width: 100%;
+        background: var(--accent);
+        color: var(--white);
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.3s;
+      }
+
+      .btn-buy:hover { filter: brightness(1.1); }
+      .pricing-card.featured .btn-buy { background: var(--dark); color: var(--white); }
+
+      /* Kickback / Success Fee Styling */
+      .pricing-kickback {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: rgba(255,255,255,0.05);
+        border-radius: 8px;
+        font-size: 0.75rem;
+        color: var(--gray-400);
+        text-align: center;
+      }
+
+      .pricing-kickback.success {
+        background: rgba(16, 185, 129, 0.15);
+        color: #10b981;
+        font-weight: 600;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+      }
+
+      .pricing-kickback.success span {
+        opacity: 0.7;
+        font-weight: 400;
+      }
+
+      /* Success fee on gold featured card - blend with background */
+      .pricing-card.featured .pricing-kickback.success {
+        background: rgba(255,255,255,0.2);
+        color: #0f172a;
+        border: 2px solid rgba(255,255,255,0.4);
+        font-size: 0.85rem;
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+      }
+
+      /* Whale Card - High Visibility Teal Theme */
+      .pricing-card.whale {
+        background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        border: 3px solid #5eead4;
+        transform: scale(1.03);
+        box-shadow: 0 0 30px rgba(45, 212, 191, 0.4);
+      }
+
+      .pricing-card.whale .pricing-name,
+      .pricing-card.whale .pricing-price,
+      .pricing-card.whale .pricing-desc,
+      .pricing-card.whale .pricing-features li {
+        color: #fff;
+      }
+
+      .pricing-card.whale .pricing-features li::before {
+        color: #fff;
+      }
+
+      .pricing-card.whale:hover {
+        transform: scale(1.03) translateY(-5px);
+        box-shadow: 0 25px 50px rgba(45, 212, 191, 0.5);
+      }
+
+      .pricing-badge.whale-badge {
+        background: #fff;
+        color: #0d9488;
+        font-weight: 800;
+        font-size: 0.8rem;
+        padding: 0.35rem 1rem;
+      }
+
+      .pricing-card.whale .btn-buy.whale-btn {
+        background: #fff;
+        color: #0d9488;
+        font-weight: 800;
+      }
+
+      .pricing-card.whale .btn-buy.whale-btn:hover {
+        background: #0f172a;
+        color: #fff;
+      }
+
+      .pricing-card.whale .pricing-kickback.success {
+        background: rgba(255,255,255,0.2);
+        border-color: rgba(255,255,255,0.3);
+        color: #fff;
+      }
+
+      /* Pricing Note */
+      .pricing-note {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background: rgba(30,41,59,0.5);
+        border-radius: 12px;
+        border-left: 4px solid var(--accent);
+        text-align: center;
+      }
+
+      .pricing-note p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--gray-300);
+      }
+
+      .pricing-note strong {
+        color: #10b981;
+      }
+
+      /* CTA */
+      .cta {
+        padding: 4rem 2rem;
+        background: var(--gradient);
+        text-align: center;
+      }
+
+      .cta h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
+      .cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; }
+      .cta .hero-cta { background: var(--white); color: var(--primary-dark); }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: var(--gray-400);
+        padding: 2rem;
+        text-align: center;
+        font-size: 0.85rem;
+        border-top: 1px solid rgba(255,255,255,0.05);
+      }
+
+      footer a { color: var(--primary); text-decoration: none; }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .hero h1 { font-size: 2.2rem; }
+        .engines-grid, .pricing-grid { grid-template-columns: 1fr; }
+        .poc-card { grid-template-columns: 1fr; text-align: center; }
+        .pricing-card.featured, .pricing-card.whale { transform: none; }
+        .nav-links { display: none; }
+        .timeline { flex-direction: column; gap: 2rem; }
+        .timeline::before { display: none; }
+        .window-zone { display: none; }
+        .comparison-table { font-size: 0.85rem; }
+        .comparison-table th, .comparison-table td { padding: 0.75rem; }
+        .pipeline-flow { flex-direction: column; gap: 1rem; }
+        .pipeline-arrow { transform: rotate(90deg); }
+        .pipeline-stage { max-width: 100%; min-width: 100%; }
+        .pipeline-stats { grid-template-columns: repeat(2, 1fr); }
+        .steps-container { grid-template-columns: repeat(2, 1fr); }
+        .steps-container::before { display: none; }
+        .output-metrics { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media (max-width: 600px) {
+        /* Typography */
+        .hero h1 { font-size: 1.75rem; line-height: 1.2; }
+        .hero p { font-size: 1rem; }
+        .section-header h2 { font-size: 1.6rem; }
+        .section-header p { font-size: 0.95rem; }
+        
+        /* Container & Sections */
+        .container { padding: 0 1rem; }
+        section { padding: 3rem 1rem; }
+        .hero { padding: 3rem 1rem; }
+        
+        /* Navigation */
+        nav { padding: 0.75rem 1rem; }
+        .logo { font-size: 1.2rem; }
+        .nav-cta { padding: 0.5rem 1rem; font-size: 0.8rem; }
+        
+        /* Top Banner */
+        .top-banner { font-size: 0.7rem; padding: 0.5rem; }
+        
+        /* Hero CTA */
+        .hero-cta { padding: 0.8rem 1.5rem; font-size: 1rem; width: 100%; justify-content: center; }
+        
+        /* Cards */
+        .engine-card, .pricing-card { padding: 1.5rem; }
+        .pricing-price { font-size: 2rem; }
+        .pricing-name { font-size: 1rem; }
+        
+        /* Steps - 2x2 grid on mobile */
+        .steps-container { 
+          grid-template-columns: repeat(2, 1fr); 
+          gap: 1rem; 
+        }
+        .step-item { padding: 0.5rem; }
+        .step-number { width: 36px; height: 36px; font-size: 0.9rem; }
+        .step-title { font-size: 0.75rem; }
+        .step-desc { font-size: 0.65rem; display: none; }
+        
+        /* Pipeline */
+        .pipeline-stats { grid-template-columns: 1fr; gap: 1rem; }
+        .pipeline-stat-number { font-size: 1.5rem; }
+        
+        /* Data Terminal */
+        .data-terminal { margin: 0 -1rem; border-radius: 0; }
+        .terminal-body { padding: 1rem; }
+        .output-metrics { grid-template-columns: 1fr; }
+        .metric { padding: 0.75rem; }
+        .metric-value { font-size: 1.2rem; }
+        
+        /* POC */
+        .poc-card { padding: 1.5rem; gap: 1.5rem; }
+        .poc-score-display { width: 120px; height: 120px; }
+        .poc-score-display::before { width: 95px; height: 95px; }
+        .poc-score-number { font-size: 2.5rem; }
+        .poc-content h3 { font-size: 1.25rem; }
+        
+        /* Comparison Table */
+        .comparison-table { font-size: 0.75rem; display: block; overflow-x: auto; }
+        .comparison-table th, .comparison-table td { padding: 0.5rem; white-space: nowrap; }
+        
+        /* Funnel */
+        .funnel-final { flex-direction: column; padding: 1rem; gap: 0.75rem; }
+        .final-badge { width: 50px; height: 50px; }
+        .final-number { font-size: 2rem; }
+        .final-text strong { font-size: 1.1rem; }
+        .funnel-message p { font-size: 1rem; }
+        
+        /* Pricing */
+        .pricing-grid { gap: 1rem; }
+        .pricing-kickback { font-size: 0.7rem; padding: 0.4rem 0.8rem; }
+        .btn-buy { padding: 0.7rem 1rem; font-size: 0.9rem; }
+        .pricing-note { padding: 1rem; }
+        .pricing-note p { font-size: 0.85rem; }
+        
+        /* CTA */
+        .cta { padding: 2.5rem 1rem; }
+        .cta h2 { font-size: 1.5rem; }
+        .cta p { font-size: 0.95rem; }
+        
+        /* Footer */
+        footer { padding: 1.5rem 1rem; font-size: 0.8rem; }
+        
+        /* Window Diagram */
+        .window-diagram { padding: 1.5rem; }
+        .window-label span { font-size: 0.7rem; padding: 0.4rem 1rem; }
+        .window-quote { padding: 1rem; font-size: 0.9rem; }
+      }
+
+      @media (max-width: 400px) {
+        .hero h1 { font-size: 1.5rem; }
+        .pricing-price { font-size: 1.75rem; }
+        .step-title { font-size: 0.75rem; }
+        .step-desc { font-size: 0.7rem; }
+      }
+
+      /* iPhone-specific fixes */
+      @supports (-webkit-touch-callout: none) {
+        /* iOS only */
+        body {
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+
+      /* Force all elements to respect container width */
+      img, video, iframe, table, pre, code {
+        max-width: 100%;
+      }
+
+      /* Ensure no element causes horizontal scroll */
+      section, .container, nav, footer, header {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      /* Fix for elements that might overflow */
+      .top-banner,
+      .window-diagram,
+      .pipeline-flow,
+      .data-terminal,
+      .comparison-table {
+        max-width: 100%;
+        overflow-x: auto;
+      }
+    </style>
+
+
+  </head>
+  <body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+      📊 Current Pipeline: $1,710,181,585 in Commercial HVAC Opportunities Identified This Month
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-inner">
+        <a href="#" class="logo">Signal<span>Core</span></a>
+        <ul class="nav-links">
+          <li><a href="#window">The Window</a></li>
+          <li><a href="#engines">Our Engines</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <a href="#pricing" class="nav-cta">Get First Look</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-content">
+        <h1>Stop Bidding. <span>Start Negotiating.</span></h1>
+        <p>We aggregate 30+ live data sources—property sales, permit filings, building age, regulatory deadlines, and more—to identify commercial HVAC opportunities <strong>6 to 12 months before the RFP</strong>.</p>
+        <a href="#pricing" class="hero-cta">See Subscription Plans →</a>
+        <p class="hero-sub">Request a sample brief (decision-maker contact revealed on purchase)</p>
+      </div>
+    </section>
+
+    <!-- Window of Opportunity -->
+    <section class="window" id="window">
+      <div class="container">
+        <div class="section-header">
+          <h2>The Window of Opportunity</h2>
+          <p>Most contractors enter after margins are dead. We get you in during the quiet zone.</p>
+        </div>
+
+        <div class="window-diagram">
+          <div class="window-label">
+            <span>🎯 Your Exclusive Window</span>
+          </div>
+
+          <div class="steps-container">
+            <div class="step-item good">
+              <div class="step-number">1</div>
+              <div class="step-title">Zero-Day Trigger</div>
+              <div class="step-desc">Sale, violation, or deadline detected</div>
+            </div>
+
+            <div class="step-item good">
+              <div class="step-number">2</div>
+              <div class="step-title">First Look Alert</div>
+              <div class="step-desc">You receive the dossier (48hrs)</div>
+            </div>
+
+            <div class="step-item good">
+              <div class="step-number">3</div>
+              <div class="step-title">Sole-Source Deal</div>
+              <div class="step-desc">Close at premium margins</div>
+            </div>
+
+            <div class="step-item bad">
+              <div class="step-number">✗</div>
+              <div class="step-title">Public Bid Board</div>
+              <div class="step-desc">10+ contractors, race to bottom</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="window-quote">
+          "When a project hits a public bid board, your margins are already dead. We identify 'Zero-Day' triggers—sales, compliance deadlines, and equipment failures—up to <strong>12 months before a permit is ever pulled</strong>. That is your window to sole-source the contract."
+        </div>
+      </div>
+    </section>
+
+    <!-- The Three Engines -->
+    <section class="engines" id="engines">
+      <div class="container">
+        <div class="section-header">
+          <h2>The Three Predictive Engines</h2>
+          <p>We don't guess. We know.</p>
+        </div>
+
+        <div class="engines-grid">
+          <div class="engine-card">
+            <div class="engine-icon">⚖️</div>
+            <h3>The Regulatory Engine</h3>
+            <p>We track regulatory deadlines, code enforcement actions, and compliance windows across multiple jurisdictions. You arrive with the solution <strong>before the deadline hits</strong>.</p>
+          </div>
+
+          <div class="engine-card">
+            <div class="engine-icon">🔑</div>
+            <h3>The Transactional Engine</h3>
+            <p>Our systems flag major commercial sales within <strong>24 hours</strong>. New owners are the #1 buyers of mechanical retrofits. We give you the principal's mobile number while the ink is still wet on the deed.</p>
+          </div>
+
+          <div class="engine-card">
+            <div class="engine-icon">⏰</div>
+            <h3>The Lifecycle Engine</h3>
+            <p>By cross-referencing building age with a decade of permit gaps, we identify assets at <strong>"Mathematical Failure."</strong> You aren't cold-calling; you're responding to a ticking clock.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Intelligence Pipeline -->
+    <section class="pipeline" id="pipeline">
+      <div class="container">
+        <div class="section-header">
+          <h2>The Intelligence Pipeline</h2>
+          <p>We don't sell dossiers. We sell <strong>time</strong>—6 to 12 months before your competition knows the opportunity exists.</p>
+        </div>
+
+        <!-- Data Terminal Style Pipeline -->
+        <div class="data-terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <span class="terminal-title">signalcore_pipeline.exe — Live Feed</span>
+            <span class="terminal-status">● ACTIVE</span>
+          </div>
+
+          <div class="terminal-body">
+            <!-- Simple Visual Funnel -->
+            <div class="simple-funnel">
+              <div class="funnel-stage stage-1">
+                <div class="stage-bar"></div>
+                <div class="stage-content">
+                  <span class="stage-num">52,847</span>
+                  <span class="stage-text">Properties Scanned</span>
+                </div>
+              </div>
+
+              <div class="funnel-connector">▼</div>
+
+              <div class="funnel-stage stage-2">
+                <div class="stage-bar"></div>
+                <div class="stage-content">
+                  <span class="stage-num">2,847</span>
+                  <span class="stage-text">Match Your Criteria</span>
+                </div>
+              </div>
+
+              <div class="funnel-connector">▼</div>
+
+              <div class="funnel-stage stage-3">
+                <div class="stage-bar"></div>
+                <div class="stage-content">
+                  <span class="stage-num">247</span>
+                  <span class="stage-text">Ready to Buy</span>
+                </div>
+              </div>
+
+              <div class="funnel-connector final-arrow">▼</div>
+
+              <div class="funnel-final">
+                <div class="final-badge">
+                  <span class="final-number">1</span>
+                </div>
+                <div class="final-text">
+                  <strong>Your Lead</strong>
+                  <span>Owner name • Phone • Building details</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simple Message -->
+            <div class="funnel-message">
+              <p><strong>We do the work.</strong> You get the call.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pipeline Stats -->
+        <div class="pipeline-stats">
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-number">6-12</div>
+            <div class="pipeline-stat-label">Month Head Start</div>
+          </div>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-number">30+</div>
+            <div class="pipeline-stat-label">Live Data Sources</div>
+          </div>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-number">48hr</div>
+            <div class="pipeline-stat-label">First Look Window</div>
+          </div>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-number">&lt;2%</div>
+            <div class="pipeline-stat-label">Pass Rate</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POC Score -->
+    <section class="poc">
+      <div class="container">
+        <div class="poc-card">
+          <div class="poc-visual">
+            <div class="poc-score-display">
+              <div class="poc-score-number">9.2</div>
+            </div>
+            <div class="poc-score-label">Probability of Closing Score</div>
+          </div>
+
+          <div class="poc-content">
+            <h3>Every Lead Comes with a POC Score</h3>
+            <p>Our proprietary Probability of Closing (POC) model analyzes legal pressure, financial health, and equipment lifecycle to tell you which owners are <strong>90% likely to sign a contract this quarter</strong>.</p>
+            <p>We only deliver leads with a POC score of 8 or higher.</p>
+            <ul class="poc-factors">
+              <li>Recent Property Sale</li>
+              <li>Building Age (20+ yrs)</li>
+              <li>Permit Gap (10+ yrs)</li>
+              <li>Ownership Tenure</li>
+              <li>Market Timing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Margin Comparison -->
+    <section class="comparison">
+      <div class="container">
+        <div class="section-header">
+          <h2>The Margin Math</h2>
+          <p>Predictive leads aren't just better. They're a different business model.</p>
+        </div>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th class="bad">Bid Board Leads (Reactive)</th>
+              <th class="good">SignalCore (Predictive)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Competition</td>
+              <td class="bad">10+ Contractors</td>
+              <td class="good">Exclusive (First Look)</td>
+            </tr>
+            <tr>
+              <td>Pricing Model</td>
+              <td class="bad">Lowest Bid Wins</td>
+              <td class="good">Negotiated / Sole Source</td>
+            </tr>
+            <tr>
+              <td>Your Role</td>
+              <td class="bad">Laborer / Installer</td>
+              <td class="good">Consultant / Partner</td>
+            </tr>
+            <tr class="highlight">
+              <td><strong>Profit Margin</strong></td>
+              <td class="bad"><strong>3% – 5%</strong></td>
+              <td class="good"><strong>15% – 25%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-header">
+          <h2>Monetize the Opportunity Window</h2>
+          <p>We win when you win. Choose your level of market access.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-name">The Feed</div>
+            <div class="pricing-price">$750<span>/mo</span></div>
+            <div class="pricing-desc">Market Awareness</div>
+            <ul class="pricing-features">
+              <li>7-Day Delayed Signal</li>
+              <li>General Property Data</li>
+              <li>No owner names</li>
+              <li>Email Support</li>
+            </ul>
+            <div class="pricing-kickback">No Success Fee</div>
+            <a href="https://buy.stripe.com/7sYaEXg9JgYOfWq1TG0oM00" target="_blank" class="btn-buy">Subscribe</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-name">Priority Intel</div>
+            <div class="pricing-price">$2,500<span>/mo</span></div>
+            <div class="pricing-desc">Active Hunting</div>
+            <ul class="pricing-features">
+              <li>24-Hour Priority Feed</li>
+              <li>Principal Owner Names</li>
+              <li>POC (Probability) Scoring</li>
+              <li>Direct contact info</li>
+            </ul>
+            <div class="pricing-kickback success">+$1,000 Success Fee per Close</div>
+            <a href="https://buy.stripe.com/7sYfZh7DdbEu6lQ41O0oM01" target="_blank" class="btn-buy">Get Priority Access</a>
+          </div>
+
+          <div class="pricing-card whale">
+            <div class="pricing-badge whale-badge">Executive Partner</div>
+            <div class="pricing-name">Market Dominance</div>
+            <div class="pricing-price">$5,000<span>/mo</span></div>
+            <div class="pricing-desc">Exclusive Zero-Day Access</div>
+            <ul class="pricing-features">
+              <li><strong>Exclusive Zero-Day Alerts</strong></li>
+              <li>Verified Principal Mobile Numbers</li>
+              <li>Full Engineering Dossiers</li>
+              <li>First-mover advantage on $1M+ projects</li>
+            </ul>
+            <div class="pricing-kickback success">+0.5% Performance Bonus <span>(Capped at $25k)</span></div>
+            <a href="https://buy.stripe.com/cNi4gzf5F0ZQ25A8i40oM02" target="_blank" class="btn-buy whale-btn">Apply for Exclusivity</a>
+          </div>
+        </div>
+
+        <div class="pricing-note">
+          <p><strong>The "Success" Logic:</strong> I don't charge you a huge fee upfront. I win only when you win. This makes me your partner, not just a vendor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <h2>See the Intelligence Before You Buy</h2>
+      <p>Request a sample brief: full property intel with decision-maker contact redacted. Verified HVAC contractors only.</p>
+      <a href="mailto:leads@signalcoredata.com?subject=Sample Brief Request&body=Company Name:%0D%0APhone:%0D%0AService Area:%0D%0A" class="hero-cta">Request Sample Brief →</a>
+      <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">Include your company name, phone, and service area. We verify all requests within 24 hours.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p><strong>SignalCore Data</strong> | Predictive Commercial HVAC Intelligence</p>
+      <p>Spokane, WA | <a href="mailto:leads@signalcoredata.com">leads@signalcoredata.com</a></p>
+      <p style="margin-top: 0.75rem; opacity: 0.6;">Data sourced from Washington public records under RCW 42.56</p>
+    </footer>
+
+    <!-- Premium Animations CSS -->
+    <style>
+      /* Fade-in on scroll */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Stagger children */
+      .fade-in-stagger > * {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+
+      .fade-in-stagger.visible > *:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+      .fade-in-stagger.visible > *:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+      .fade-in-stagger.visible > *:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+      .fade-in-stagger.visible > *:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+
+      /* Enhanced top banner with LIVE pulse */
+      .top-banner {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      .live-dot {
+        width: 10px;
+        height: 10px;
+        background: #0f172a;
+        border-radius: 50%;
+        position: relative;
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+
+      .live-dot::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        background: rgba(15, 23, 42, 0.3);
+        border-radius: 50%;
+        animation: pulse-ring 2s ease-out infinite;
+      }
+
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+      }
+
+      @keyframes pulse-ring {
+        0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+      }
+
+      /* Enhanced card hover with glow */
+      .engine-card,
+      .pricing-card,
+      .step-item {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .engine-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        border-color: var(--primary);
+      }
+
+      .pricing-card:hover {
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      .pricing-card.featured {
+        box-shadow: 0 20px 40px rgba(245, 158, 11, 0.3);
+      }
+
+      .pricing-card.featured:hover {
+        box-shadow: 0 30px 60px rgba(245, 158, 11, 0.4);
+      }
+
+      /* CTA button enhanced hover */
+      .hero-cta,
+      .btn-buy,
+      .nav-cta {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-cta::before,
+      .btn-buy::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      .hero-cta:hover::before,
+      .btn-buy:hover::before {
+        left: 100%;
+      }
+
+      /* Stat number glow */
+      .stat-number {
+        text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+      }
+
+      /* POC Score pulse animation */
+      .poc-score-display {
+        animation: poc-glow 3s ease-in-out infinite;
+      }
+
+      @keyframes poc-glow {
+        0%, 100% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.3); }
+        50% { box-shadow: 0 0 50px rgba(16, 185, 129, 0.5); }
+      }
+
+      /* Step number pulse for good items */
+      .step-item.good .step-number {
+        animation: step-pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes step-pulse {
+        0%, 100% { box-shadow: 0 0 25px rgba(16,185,129,0.4); }
+        50% { box-shadow: 0 0 40px rgba(16,185,129,0.6); }
+      }
+
+      /* Pipeline counter animation */
+      .pipeline-value {
+        display: inline-block;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Comparison table row hover */
+      .comparison-table tbody tr {
+        transition: background 0.3s ease;
+      }
+
+      .comparison-table tbody tr:hover {
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Enhanced section backgrounds with subtle gradient animation */
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+        animation: gradient-shift 10s ease-in-out infinite alternate;
+        pointer-events: none;
+      }
+
+      @keyframes gradient-shift {
+        0% { opacity: 0.5; transform: translateX(0); }
+        100% { opacity: 1; transform: translateX(50px); }
+      }
+
+      /* Trust badge styling */
+      .trust-badges {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .trust-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: var(--gray-400);
+      }
+
+      .trust-badge svg {
+        width: 18px;
+        height: 18px;
+        fill: var(--accent);
+      }
+
+      /* Loading shimmer effect for stats */
+      @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+    </style>
+
+    <!-- JavaScript for Animations -->
+    <script>
+      // Wait for DOM
+      document.addEventListener('DOMContentLoaded', function() {
+
+        // ========== FADE IN ON SCROLL ==========
+        const fadeElements = document.querySelectorAll('.section-header, .engine-card, .pricing-card, .poc-card, .window-diagram, .comparison-table, .window-quote');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('fade-in', 'visible');
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        fadeElements.forEach(el => {
+          el.classList.add('fade-in');
+          fadeObserver.observe(el);
+        });
+
+        // Stagger animation for grids
+        const staggerGrids = document.querySelectorAll('.engines-grid, .pricing-grid, .steps-container, .stats-grid');
+        staggerGrids.forEach(grid => {
+          grid.classList.add('fade-in-stagger');
+          fadeObserver.observe(grid);
+        });
+
+        // ========== COUNTING NUMBER ANIMATION ==========
+        function animateCounter(element, target, suffix = '', prefix = '', duration = 2000) {
+          const start = 0;
+          const startTime = performance.now();
+          
+          function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function (ease-out-cubic)
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(start + (target - start) * eased);
+            
+            element.textContent = prefix + current.toLocaleString() + suffix;
+            
+            if (progress < 1) {
+              requestAnimationFrame(update);
+            }
+          }
+          
+          requestAnimationFrame(update);
+        }
+
+        // Find and animate stat numbers when visible
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+              entry.target.dataset.animated = 'true';
+              const text = entry.target.textContent;
+              
+              if (text.includes('$')) {
+                // Pipeline value like $42M
+                animateCounter(entry.target, 42, 'M', '$');
+              } else if (text.includes('+')) {
+                // Numbers like 30+
+                const num = parseInt(text);
+                animateCounter(entry.target, num, '+');
+              } else if (text.includes('hr')) {
+                // Time like 48hr
+                animateCounter(entry.target, 48, 'hr');
+              } else {
+                const num = parseInt(text);
+                if (!isNaN(num)) {
+                  animateCounter(entry.target, num, '+');
+                }
+              }
+            }
+          });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(el => statsObserver.observe(el));
+
+        // ========== PIPELINE COUNTER TICKER ==========
+        const topBanner = document.querySelector('.top-banner');
+        if (topBanner) {
+          // Add live dot
+          const liveDot = document.createElement('span');
+          liveDot.className = 'live-dot';
+          topBanner.insertBefore(liveDot, topBanner.firstChild);
+
+          // Animate the pipeline value
+          const bannerText = topBanner.textContent;
+          const pipelineMatch = bannerText.match(/\$[\d,]+/);
+          if (pipelineMatch) {
+            const originalValue = 1710181585;
+            let currentValue = originalValue;
+            
+            // Slowly increment every few seconds to show "live" data
+            setInterval(() => {
+              currentValue += Math.floor(Math.random() * 50000) + 10000;
+              const formattedValue = '$' + currentValue.toLocaleString();
+              topBanner.innerHTML = '<span class="live-dot"></span>Current Pipeline: ' + formattedValue + ' in Predictive Institutional Projects Identified This Month';
+            }, 8000);
+          }
+        }
+
+        // ========== POC SCORE COUNTER ==========
+        const pocScore = document.querySelector('.poc-score-number');
+        if (pocScore) {
+          const pocObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && !entry.target.dataset.animated) {
+                entry.target.dataset.animated = 'true';
+                let count = 0;
+                const target = 9.2;
+                const duration = 1500;
+                const startTime = performance.now();
+                
+                function updatePOC(currentTime) {
+                  const elapsed = currentTime - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  const eased = 1 - Math.pow(1 - progress, 3);
+                  const current = (target * eased).toFixed(1);
+                  entry.target.textContent = current;
+                  
+                  if (progress < 1) {
+                    requestAnimationFrame(updatePOC);
+                  }
+                }
+                
+                requestAnimationFrame(updatePOC);
+              }
+            });
+          }, { threshold: 0.5 });
+          
+          pocObserver.observe(pocScore);
+        }
+
+        // ========== SMOOTH SCROLL FOR ANCHOR LINKS ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+
+      });
+    </script>
+  </body>
+</html>
+
