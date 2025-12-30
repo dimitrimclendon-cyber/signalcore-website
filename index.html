@@ -1277,11 +1277,15 @@
         .poc-content h3 { font-size: 1.25rem; }
         
         /* Comparison Table - Horizontal Scroll Carousel (hide scrollbar) */
-        .comparison { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
-        .comparison::-webkit-scrollbar { display: none; }
+        .table-scroll-wrapper {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .table-scroll-wrapper::-webkit-scrollbar { display: none; }
         .comparison-table { 
           font-size: 0.75rem; 
-          display: table;
           width: max-content;
           min-width: 100%;
         }
@@ -1633,6 +1637,7 @@
           <p>Predictive leads aren't just better. They're a different business model.</p>
         </div>
 
+        <div class="table-scroll-wrapper">
         <table class="comparison-table">
           <thead>
             <tr>
@@ -1664,6 +1669,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </section>
 
