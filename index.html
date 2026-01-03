@@ -2759,15 +2759,8 @@
             const originalValue = 1710181585;
             let currentValue = originalValue;
 
-            // Slowly increment every few seconds to show "live" data
-            setInterval(() => {
-              currentValue += Math.floor(Math.random() * 50000) + 10000;
-              const formattedValue = "$" + currentValue.toLocaleString();
-              topBanner.innerHTML =
-                '<span class="live-dot"></span>Current Pipeline: ' +
-                formattedValue +
-                " in Predictive Institutional Projects Identified This Month";
-            }, 8000);
+            // REMOVED CONFLICTING INTERVAL
+
           }
         }
 
