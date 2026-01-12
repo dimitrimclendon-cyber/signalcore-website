@@ -99,6 +99,7 @@
       .logo span {
         background: var(--gradient);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
@@ -169,6 +170,7 @@
       .hero h1 span {
         background: var(--gradient);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
@@ -499,6 +501,7 @@
         font-weight: 900;
         background: var(--gradient);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
@@ -1788,9 +1791,41 @@
   <body>
     <!-- Top Banner -->
     <div class="top-banner">
-        <marquee scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();">
-            <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $3,285,000</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $3,120,408</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $3,005,000</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $2,823,475</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $2,762,626</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $2,028,000</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,762,200</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,536,307</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,511,087</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,511,087</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,486,886</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,432,496</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,405,000</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,405,000</span> &nbsp;&nbsp;&nbsp; <span class='ticker-item'>⚠ DETECTED: REDACTED | Risk: $1,366,978</span>
-        </marquee>
+      <marquee
+        scrollamount="8"
+        onmouseover="this.stop();"
+        onmouseout="this.start();"
+      >
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $3,285,000</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $3,120,408</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $3,005,000</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $2,823,475</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $2,762,626</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $2,028,000</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,762,200</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,536,307</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,511,087</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,511,087</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,486,886</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,432,496</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,405,000</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,405,000</span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="ticker-item">⚠ DETECTED: REDACTED | Risk: $1,366,978</span>
+      </marquee>
     </div>
 
     <!-- Navigation -->
@@ -1814,7 +1849,9 @@
             "
             >Portal Login</a
           >
-          <a href="#sample-brief" class="nav-cta">Partner Inquiry</a>
+          <a href="mailto:partners@signalcoredata.com" class="nav-cta"
+            >Partner Inquiry</a
+          >
         </div>
       </div>
     </nav>
@@ -2210,7 +2247,7 @@
             </li>
           </ul>
           <a
-            href="#sample-brief"
+            href="mailto:partners@signalcoredata.com"
             class="hero-cta"
             style="background: var(--gradient-gold); border: none"
             >Apply for Strategic Exclusivity →</a
@@ -2264,12 +2301,7 @@
             Liability Waiver
           </h3>
           <div
-            style="
-              font-size: 0.85rem;
-              color: var(--gray-400);
-              line-height: 1.8;
-              space-y: 1rem;
-            "
+            style="font-size: 0.85rem; color: var(--gray-400); line-height: 1.8"
           >
             <p style="margin-bottom: 1rem">
               <strong>Algorithm & Estimation Warning:</strong> All data points
@@ -2301,65 +2333,7 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta" id="sample-brief">
-      <h2>See the Intelligence Before You Buy</h2>
-      <p>
-        Request a sample brief: full property intel with decision-maker contact
-        redacted. Verified HVAC contractors only.
-      </p>
-
-      <form
-        name="sample-brief"
-        method="POST"
-        data-netlify="true"
-        class="sample-brief-form"
-      >
-        <input type="hidden" name="form-name" value="sample-brief" />
-        <div class="form-row">
-          <div class="form-group">
-            <input
-              type="text"
-              name="company"
-              placeholder="Company Name"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              required
-            />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              name="service_area"
-              placeholder="Service Area (e.g., Spokane, WA)"
-            />
-          </div>
-        </div>
-        <button type="submit" class="hero-cta form-submit">
-          Request Sample Brief →
-        </button>
-      </form>
-
-      <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7">
-        We verify all requests within 24 hours.
-      </p>
-    </section>
+    <!-- CTA Section Removed -->
 
     <footer>
       <p>
@@ -2760,7 +2734,6 @@
             let currentValue = originalValue;
 
             // REMOVED CONFLICTING INTERVAL
-
           }
         }
 
