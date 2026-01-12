@@ -1484,9 +1484,16 @@
         .logo {
           font-size: 1.2rem;
         }
+        .nav-links {
+          display: none; /* Hide nav links on mobile */
+        }
         .nav-cta {
-          padding: 0.5rem 1rem;
-          font-size: 0.8rem;
+          padding: 0.5rem 0.8rem;
+          font-size: 0.75rem;
+        }
+        /* Hide Portal Login on very small screens, keep Partner Inquiry */
+        nav > div > div:last-child a:first-child {
+          display: none;
         }
 
         /* Top Banner */
